@@ -22,7 +22,7 @@
 <html lang="en">
 <head>
 	<?php include 'templates/header.php' ?>
-	<title>Pending Requests -  Barangay Management System</title>
+	<title>Requested Documents -  Barangay Management System</title>
 </head>
 <body>
 <?php include 'templates/loading_screen.php' ?>
@@ -41,7 +41,7 @@
 					<div class="page-inner">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
-								<h2 class="text-white fw-bold">Pending Requests</h2>
+								<h2 class="text-white fw-bold">Requested Documents</h2>
 							</div>
 						</div>
                         
