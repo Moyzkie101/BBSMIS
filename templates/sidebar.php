@@ -65,6 +65,12 @@ $current_page = PageName();
                         <p>Resident Information</p>
                     </a>
                 </li>
+                <li class="nav-item <?= $current_page=='household.php'  ? 'active' : null ?>">
+                    <a href="household.php">
+                        <i class="icon-layers"></i>
+                        <p>Households</p>
+                    </a>
+                </li>
                 <li class="nav-item <?= $current_page=='resident_pending.php' ? 'active' : null ?>">
                     <a href="resident_pending.php">
                         <i class="icon-badge"></i>
