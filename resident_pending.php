@@ -1,6 +1,6 @@
 <?php include 'server/server.php' ?>
 <?php 
-	$query = "SELECT * FROM tblresident WHERE status='Approved'";
+	$query = "SELECT * FROM tblresident WHERE status='Pending'";
     $result = $conn->query($query);
 
     $resident = array();
@@ -20,7 +20,7 @@
 <html lang="en">
 <head>
 	<?php include 'templates/header.php' ?>
-	<title>Resident Information -  Barangay Management System</title>
+	<title>Pending Requests -  Barangay Management System</title>
 </head>
 <body>
 <?php include 'templates/loading_screen.php' ?>
@@ -39,7 +39,7 @@
 					<div class="page-inner">
 						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
 							<div>
-								<h2 class="text-white fw-bold">Residents</h2>
+								<h2 class="text-white fw-bold">Pending Requests</h2>
 							</div>
 						</div>
 					</div>

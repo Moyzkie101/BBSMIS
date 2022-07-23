@@ -65,6 +65,12 @@ $current_page = PageName();
                         <p>Resident Information</p>
                     </a>
                 </li>
+                <li class="nav-item <?= $current_page=='resident_pending.php' ? 'active' : null ?>">
+                    <a href="resident_pending.php">
+                        <i class="icon-badge"></i>
+                        <p>Pending Requests</p>
+                    </a>
+                </li>
                 <li class="nav-item <?= $current_page=='resident_certification.php' || $current_page=='generate_brgy_cert.php' ? 'active' : null ?>">
                     <a href="resident_certification.php">
                         <i class="icon-badge"></i>
