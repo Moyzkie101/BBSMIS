@@ -32,6 +32,13 @@
 	$date = date('Y-m-d'); 
 	$query8 = "SELECT SUM(amounts) as am FROM tblpayments WHERE `date`='$date'";
 	$revenue = $conn->query($query8)->fetch_assoc();
+
+	$query9 = "SELECT * FROM tblbrgy_info WHERE `id`= 1";
+	$result9 = $conn->query($query9);
+	$brgyinfo = array();
+	while($row = $result9->fetch_assoc()){
+		$brgyinfo[] = $row; 
+	}
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +76,7 @@
 								<?php echo $_SESSION['message']; ?>
 							</div>
 						<?php unset($_SESSION['message']); ?>
-						<?php endif ?>
+					<?php endif ?>
 					<div class="row">
 						<div class="col-md-4">
 							<div class="card card-stats card-primary card-round">
@@ -305,6 +312,24 @@
 									<div class="text-center">
 										<img class="img-fluid" src="<?= !empty($db_img) ? 'assets/uploads/'.$db_img : 'assets/img/bg-abstract.png' ?>" />
 									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Map -->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-head-row">
+										<div class="card-title fw-bold">Map</div>
+									</div>
+								</div>
+								<div class="card-body">
+									<?php $no=1; foreach($brgyinfo as $row): ?>
+										<?= $row['map_url'] ?>
+									<?php $no++; endforeach ?>
 								</div>
 							</div>
 						</div>

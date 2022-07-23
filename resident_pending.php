@@ -1,6 +1,6 @@
 <?php include 'server/server.php' ?>
 <?php 
-	$query = "SELECT * FROM tblresident WHERE status='Pending'";
+	$query = "SELECT * FROM tbldocument_request";
     $result = $conn->query($query);
 
     $resident = array();
@@ -61,10 +61,6 @@
 										<div class="card-title">Resident Information</div>
                                         <?php if(isset($_SESSION['username'])):?>
 										<div class="card-tools">
-											<a href="#add" data-toggle="modal" class="btn btn-info btn-border btn-round btn-sm">
-												<i class="fa fa-plus"></i>
-												Resident
-											</a>
                                             <a href="model/export_resident_csv.php" class="btn btn-danger btn-border btn-round btn-sm">
 												<i class="fa fa-file"></i>
 												Export CSV
@@ -78,19 +74,18 @@
 										<table id="residenttable" class="display table table-striped">
 											<thead>
 												<tr>
-													<th scope="col">Fullname</th>
-                                                    <th scope="col">National ID</th>
-													<th scope="col">Alias</th>
-													<th scope="col">Birthdate</th>
-													<th scope="col">Age</th>
-													<th scope="col">Civil Status</th>
-                                                    <th scope="col">Gender</th>
-													<th scope="col">Purok</th>
+													<th scope="col">No.</th>
+                                                    <th scope="col">Date</th>
+													<th scope="col">Name</th>
+													<th scope="col">Services</th>
+													<th scope="col">Purpose</th>
+													<th scope="col">Payment Method</th>
+                                                    <th scope="col">Ref.No</th>
+													<th scope="col">Status</th>
                                                     <?php if(isset($_SESSION['username'])):?>
-                                                        <?php if($_SESSION['role']=='administrator'):?>
-													<th scope="col">Voter Status</th>
-                                                    <?php endif ?>
+                                                        <?php if($_SESSION['role']=='administrator' || $_SESSION['role']=='staff'):?>
 													<th scope="col">Action</th>
+                                                    <?php endif ?>
                                                     <?php endif ?>
 												</tr>
 											</thead>
@@ -98,47 +93,31 @@
 												<?php if(!empty($resident)): ?>
 													<?php $no=1; foreach($resident as $row): ?>
 													<tr>
-														<td>
-                                                            <div class="avatar avatar-xs">
-                                                                <img src="<?= preg_match('/data:image/i', $row['picture']) ? $row['picture'] : 'assets/uploads/resident_profile/'.$row['picture'] ?>" alt="Resident Profile" class="avatar-img rounded-circle">
-                                                            </div>
-                                                            <?= ucwords($row['lastname'].', '.$row['firstname'].' '.$row['middlename']) ?>
+                                                        <td><?= $row['id'] ?></td>
+														<td><?= $row['request_date'] ?></td>
+														<td><?= $row['resident_id'] ?></td>
+														<td><?= $row['request_service'] ?></td>
+                                                        <td><?= $row['request_purpose'] ?></td>
+                                                        <td><?= $row['request_payment_method'] ?></td>
+                                                        <td><?= $row['request_ref_no'] ?></td>
+                                                        <td>
+                                                            <select class="form-select" aria-label="Default select example">
+                                                              <option selected>Received</option>
+                                                              <option value="1">Pending</option>
+                                                              <option value="2">Ready for Pickup</option>
+                                                              <option value="3">Cancelled</option>
+                                                            </select>
                                                         </td>
-                                                        <td><?= $row['national_id'] ?></td>
-														<td><?= $row['alias'] ?></td>
-														<td><?= $row['birthdate'] ?></td>
-														<td><?= $row['age'] ?></td>
-                                                        <td><?= $row['civilstatus'] ?></td>
-                                                        <td><?= $row['gender'] ?></td>
-                                                        <td><?= $row['purok'] ?></td>
                                                         <?php if(isset($_SESSION['username'])):?>
-                                                            <?php if($_SESSION['role']=='administrator'):?>
-                                                        <td><?= $row['voterstatus'] ?></td>
-                                                        <?php endif ?>
+                                                            <?php if($_SESSION['role']=='administrator' || $_SESSION['role']=='staff'):?>
 														<td>
 															<div class="form-button-action">
-                                                                <a type="button" href="#edit" data-toggle="modal" class="btn btn-link btn-primary" title="View Resident" onclick="editResident(this)" 
-                                                                    data-id="<?= $row['id'] ?>" data-national="<?= $row['national_id'] ?>" data-fname="<?= $row['firstname'] ?>" data-mname="<?= $row['middlename'] ?>" data-lname="<?= $row['lastname'] ?>"
-                                                                    data-alias="<?= $row['alias'] ?>" data-bplace="<?= $row['birthplace'] ?>" data-bdate="<?= $row['birthdate'] ?>" data-age="<?= $row['age'] ?>"
-                                                                    data-cstatus="<?= $row['civilstatus'] ?>" data-gender="<?= $row['gender'] ?>"data-purok="<?= $row['purok'] ?>" data-vstatus="<?= $row['voterstatus'] ?>"
-                                                                    data-indetity="<?= $row['identified_as'] ?>" data-number="<?= $row['phone'] ?>" data-email="<?= $row['email'] ?>" data-address="<?= $row['address'] ?>" 
-                                                                    data-img="<?= $row['picture'] ?>" data-citi="<?= $row['citizenship'];?>" data-occu="<?= $row['occupation'] ?>" data-dead="<?= $row['resident_type'];?>" data-remarks="<?= $row['remarks'] ?>">
-                                                                    <?php if(isset($_SESSION['username'])): ?>
-                                                                    <i class="fa fa-edit"></i>
-                                                                    <?php else: ?>
-                                                                        <i class="fa fa-eye"></i>
-                                                                    <?php endif ?>
-                                                                </a>
-                                                                <?php if(isset($_SESSION['username']) && $_SESSION['role']=='administrator'):?>
-																<a type="button" data-toggle="tooltip" href="generate_resident.php?id=<?= $row['id'] ?>" class="btn btn-link btn-info" data-original-title="Generate">
-																	<i class="fa fa-file"></i>
-																</a>
                                                                 <a type="button" data-toggle="tooltip" href="model/remove_resident.php?id=<?= $row['id'] ?>" onclick="return confirm('Are you sure you want to delete this resident?');" class="btn btn-link btn-danger" data-original-title="Remove">
 																	<i class="fa fa-times"></i>
 																</a>
-                                                                <?php endif ?>
 															</div>
 														</td>
+                                                            <?php endif ?>
                                                         <?php endif ?>
 														
 													</tr>
@@ -147,19 +126,18 @@
 											</tbody>
 											<tfoot>
 												<tr>
-                                                    <th scope="col">Fullname</th>
-                                                    <th scope="col">National ID</th>
-													<th scope="col">Alias</th>
-													<th scope="col">Birthdate</th>
-													<th scope="col">Age</th>
-													<th scope="col">Civil Status</th>
-                                                    <th scope="col">Gender</th>
-													<th scope="col">Purok</th>
+                                                    <th scope="col">No.</th>
+                                                    <th scope="col">Date</th>
+													<th scope="col">Name</th>
+													<th scope="col">Services</th>
+													<th scope="col">Purpose</th>
+													<th scope="col">Payment Method</th>
+                                                    <th scope="col">Ref.No</th>
+													<th scope="col">Status</th>
                                                     <?php if(isset($_SESSION['username'])):?>
-                                                        <?php if($_SESSION['role']=='administrator'):?>
-													<th scope="col">Voter Status</th>
-                                                    <?php endif ?>
+                                                        <?php if($_SESSION['role']=='administrator' || $_SESSION['role']=='staff'):?>
 													<th scope="col">Action</th>
+                                                    <?php endif ?>
                                                     <?php endif ?>
 												</tr>
 											</tfoot>
@@ -171,184 +149,6 @@
 					</div>
 				</div>
 			</div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New Resident Registration Form</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="POST" action="model/save_resident.php" enctype="multipart/form-data">
-                            <input type="hidden" name="size" value="1000000">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div style="width: 370px; height: 250;" class="text-center" id="my_camera">
-                                        <img src="assets/img/person.png" alt="..." class="img img-fluid" width="250" >
-                                    </div>
-                                    <div class="form-group d-flex justify-content-center">
-                                        <button type="button" class="btn btn-danger btn-sm mr-2" id="open_cam">Open Camera</button>
-                                        <button type="button" class="btn btn-secondary btn-sm ml-2" onclick="save_photo()">Capture</button>   
-                                    </div>
-                                    <div id="profileImage">
-                                        <input type="hidden" name="profileimg">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="file" class="form-control" name="img" accept="image/*">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>National ID No.</label>
-                                        <input type="text" class="form-control" name="national" placeholder="Enter National ID No." required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Citizenship</label>
-                                        <input type="text" class="form-control" name="citizenship" placeholder="Enter citizenship" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Firstname</label>
-                                                <input type="text" class="form-control" placeholder="Enter Firstname" name="fname" required>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Middlename</label>
-                                                <input type="text" class="form-control" placeholder="Enter Middlename" name="mname" required>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Lastname</label>
-                                                <input type="text" class="form-control" placeholder="Enter Lastname" name="lname" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Alias</label>
-                                                <input type="text" class="form-control" placeholder="Enter Alias" name="alias">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Place of Birth</label>
-                                                <input type="text" class="form-control" placeholder="Enter Birthplace" name="bplace" required>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Birthdate</label>
-                                                <input type="date" class="form-control" placeholder="Enter Birthdate" name="bdate" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Age</label>
-                                                <input type="number" class="form-control" placeholder="Enter Age" min="1" name="age" required>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="form-group">
-                                                <label>Civil Status</label>
-                                                <select class="form-control" name="cstatus">
-                                                    <option disabled selected>Select Civil Status</option>
-                                                    <option value="Single">Single</option>
-                                                    <option value="Married">Married</option>
-                                                    <option value="Widow">Widow</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Gender</label>
-                                                <select class="form-control" required name="gender">
-                                                    <option disabled selected value="">Select Gender</option>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Purok</label>
-                                                <select class="form-control" required name="purok">
-                                                    <option disabled selected>Select Purok Name</option>
-                                                    <?php foreach($purok as $row):?>
-                                                        <option value="<?= ucwords($row['name']) ?>"><?= $row['name'] ?></option>
-                                                    <?php endforeach ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Voters Status</label>
-                                                <select class="form-control vstatus" required name="vstatus">
-                                                    <option disabled selected>Select Voters Status</option>
-                                                    <option value="Yes">Yes</option>
-                                                    <option value="No">No</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Identified As</label>
-                                                <select class="form-control indetity" name="indetity">
-                                                    <option value="Positive">Positive</option>
-                                                    <option value="Negative">Negative</option>
-                                                    <option value="Unidentified">Unidentified</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Email Address</label>
-                                                <input type="email" class="form-control" placeholder="Enter Email" name="email">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Contact Number</label>
-                                                <input type="text" class="form-control" placeholder="Enter Contact Number" name="number">
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group">
-                                                <label>Occupation</label>
-                                                <input type="text" class="form-control" placeholder="Enter Occupation" name="occupation">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Address</label>
-                                        <textarea class="form-control" name="address" required placeholder="Enter Address"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
             <!-- Modal -->
             <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
@@ -541,6 +341,7 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <?php if(isset($_SESSION['username'])): ?>
                             <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-success">Approve</button>
                             <?php endif ?>
                         </div>
                         </form>
