@@ -7,6 +7,8 @@
 	while($row = $result->fetch_assoc()){
 		$resident[] = $row; 
 	}
+    
+    // testttttttttttttttt
 
     $query1 = "SELECT * FROM tblpurok ORDER BY `name`";
     $result1 = $conn->query($query1);
