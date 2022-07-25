@@ -1,0 +1,40 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background: rgb(219, 226, 226);
+}
+.row1 {
+    background: white;
+    border-radius: 30px;
+    box-shadow: 12px 12px 22px grey;
+}
+img {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    width: 61.55%;
+}
+.btn1{
+    border: none;
+    outline: none;
+    height: 58px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.btn1:hover{
+    background: white;
+    border: 1px solid;
+    color: black;
+    transition: 0.4s;
+}
+.col-lg-5{
+    padding-left: 0;
+}
+.form-floating>label{
+    left: 4mm;
+}

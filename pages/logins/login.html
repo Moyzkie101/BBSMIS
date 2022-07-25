@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <!-- Bootstrap 5 stylesheets -->
+        <!-- <link rel="stylesheet" href="../../assets/css/bootstrap5/bootstrap.css"> -->
+        <link rel="stylesheet" href="../../assets/css/bootstrap5/bootstrap.min.css">
+        <link rel="stylesheet" href="../../assets/css/pages/logins-css/login.css">
+    
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="../../assets/css/animate/animate.css">
+        <link rel="stylesheet" href="../../assets/css/animate/animate.min.css">
+    
+        <!-- JS -->
+        <!-- Bootstrap 5 JS -->
+        <script src="../../assets/js/bootstrap5/bootstrap.bundle.min.js"></script>
+        <!-- <script src="./assets/js/bootstrap5/bootstrap.min.js"></script>
+        <script src="./assets/js/bootstrap5/bootstrap.js"></script> -->
+        
+        <!-- Jquery JS -->
+        <!-- <script src="./assets/js/jquery/jquery.min.js"></script>
+        <script src="./assets/js/jquery/jquery.js"></script> -->
+        
+        <title>LOGIN FORM</title>
+    </head>
+    <body>
+        <section class="form my-4 mx 5">
+            <div class="container">
+                <div class="row row1 no-gutters">
+                    <div class="col-lg-5">
+                        <img src="../../img/pages/istockphoto-1206229132-1024x1024.jpg" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-7">
+                        <h1 class="font-weight-bold py-3">Login</h1>
+                        <h4>Please Sign-in to your Account</h4>
+                        <form>
+                            <div class="form-row">
+                                <div class="form-floating mb-3 col-lg-7">
+                                    <input type="text" placeholder="Enter your Username..." id="floatingInput" class="form-control my-3 p-4" required>
+                                    <label for="floatingInput">Enter your Username...</label>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-floating mb-3 col-lg-7">
+                                    <input type="password" placeholder="Enter your Password..." id="floatingInput" class="form-control my-3 p-4" required>
+                                    <label for="floatingInput">Enter your Password...</label>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-lg-7">
+                                    <button type="submit" class="btn1 mt-3 mb-5">LOGIN</button>
+                                </div>
+                            </div>
+                            <p>Forgot your <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Password</a>?</p>
+                            <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">| Forgot Password</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="row form-row">
+                                                    <div>
+                                                        <p>Please Enter your Email Account?</p>
+                                                        <div class="row">
+                                                            <div class="form-floating mb-3 col-8 col-xl-8">
+                                                                <input type="email" placeholder="Enter your Email..." id="floatingInput" class="form-control p-3" required>
+                                                                <label for="floatingInput">Enter your Email...</label>
+                                                            </div>
+                                                            <div class="col-4 col-md-4">
+                                                                <button type="submit" class="btn1" data-bs-toggle="modal" data-bs-target="#exampleModal3">SUBMIT</button>
+                                                                <!-- Modal for submit -->
+                                                                <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h5 class="modal-title" id="exampleModalLabel">| Aunthentication Code</h5>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form>
+                                                                                    <div class="row form-row">
+                                                                                        <div>
+                                                                                            <p>Please Enter your Code from sended to Email Account?</p>
+                                                                                            <div class="row">
+                                                                                                <div class="form-floating mb-3 col-8 col-xl-8">
+                                                                                                    <input type="text" placeholder="Enter a sending code" id="floatingInput" class="form-control p-3">
+                                                                                                    <label for="floatingInput">Enter a sending code</label>
+                                                                                                </div>
+                                                                                                <div class="col-4 col-md-4">
+                                                                                                    <button type="submit" class="btn1" data-bs-toggle="modal" data-bs-target="#exampleModal4">SUBMIT</button>
+                                                                                                    <!-- Modal for Aunthentication code for submit -->
+                                                                                                    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                                                                            <div class="modal-content">
+                                                                                                                <div class="modal-header">
+                                                                                                                    <h5 class="modal-title" id="exampleModalLabel">| New Password</h5>
+                                                                                                                </div>
+                                                                                                                <div class="modal-body">
+                                                                                                                    <form>
+                                                                                                                        <div class="row form-row">
+                                                                                                                            <div>
+                                                                                                                                <div class="row">
+                                                                                                                                    <div class="form-floating mb-3 col-8 col-xl-8">
+                                                                                                                                        <input type="password" placeholder="Enter a New Password" id="floatingInput" class="form-control p-3">
+                                                                                                                                        <label for="floatingInput">Enter a New Password</label>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="form-floating mb-3 col-8 col-xl-8">
+                                                                                                                                        <input type="password" placeholder="Enter a Confirm Password" id="floatingInput" class="form-control p-3">
+                                                                                                                                        <label for="floatingInput">Enter a Confirm Password</label>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                                <div class="modal-footer col-md-4 ms-auto">
+                                                                                                                                    <button type="submit" class="btn1" data-bs-toggle="modal">SUBMIT</button>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </form>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>If don't have an Account, Please <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1">Register here</a>?</p>
+                            <div class="modal fade" id="exampleModal1" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">| Registration Form</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body ">
+                                            <form class="needs-validation" nonvalidate>
+                                                <div class="row form-row">
+                                                    <div>
+                                                        <p><b>Note! : </b>Registration is sensitive.</p>
+                                                        <p>Please enter correctly of your real information of the resident.</p>
+                                                        <div class="row">
+                                                            <div class="form-floating mb-3 col-8 col-xl-8">
+                                                                <input type="text" placeholder="First Name" id="floatingInput validationCustom01" class="form-control p-3" required>
+                                                                <label for="floatingInput validationCustom01" class="form-label">First Name</label>
+                                                                <div class="valid-feedback">
+                                                                    Looks good!
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-floating mb-3 col-8 col-xl-8">
+                                                                <input type="text" placeholder="Middle Name" id="floatingInput validationCustom02" class="form-control p-3" required>
+                                                                <label for="floatingInput validationCustom02" class="form-label">Middle Name</label>
+                                                                <div class="valid-feedback">
+                                                                    Looks good!
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-floating mb-3 col-8 col-xl-8">
+                                                                <input type="text" placeholder="Last Name" id="floatingInput validationCustom03" class="form-control p-3" required>
+                                                                <label for="floatingInput validationCustom03" class="form-label">Last Name</label>
+                                                                <div class="valid-feedback">
+                                                                    Looks good!
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-floating mb-3 col-8 col-xl-8">
+                                                                <input type="email" placeholder="example123@email.com" id="floatingInput" class="form-control p-3" required>
+                                                                <label for="floatingInput">example123@mail.com</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-floating mb-3 col-8 col-xl-8">
+                                                                <input type="text" placeholder="Username" id="floatingInput" class="form-control p-3" required>
+                                                                <label for="floatingInput">Username</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-floating mb-3 col-8 col-xl-8">
+                                                                <input type="password" placeholder="Password" id="floatingInput" class="form-control p-3" required>
+                                                                <label for="floatingInput">Password</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-floating mb-3 col-8 col-xl-8">
+                                                                <input type="password" placeholder="Confirm Password" id="floatingInput" class="form-control p-3" required>
+                                                                <label for="floatingInput">Confirm Password</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="col-lg-7">
+                                                                <button type="submit" class="btn1 mt-3 mb-5">REGISTER</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
