@@ -1,2 +1,2 @@
-# bis
-Barangay Information System using core PHP
+# BBSMIS
+Barangay Basic Services Management Information System using core PHP
