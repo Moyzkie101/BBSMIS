@@ -6,13 +6,6 @@
 body{
     background: rgb(219, 226, 226);
 }
-.spinner-border{
-    position: fixed;
-    z-index: 99999;
-    width: 100%;
-    height: 100vh;
-    background: #fff no-repeat center;
-}
 .row1 {
     background: white;
     border-radius: 30px;
