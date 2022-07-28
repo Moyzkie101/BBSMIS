@@ -26,7 +26,11 @@
         
         <title>LOGIN FORM</title>
     </head>
-    <body class="animate__animated animate__fadeIn">
+    <body>
+        <div class="loader">
+            <img src="../../img/pages/b620ccb3ae8c14ea5447d159ebb1da58.gif" alt="">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Yf5d_Zx3AaI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen hidden></iframe>
+        </div>
         <section class="form my-4 mx 5">
             <div class="container">
                 <div class="row row1 no-gutters">
@@ -230,5 +234,17 @@
                 </div>
             </div>
         </section>
+
+        <script>
+
+            var loader = document.querySelector(".loader")
+            window.addEventListener("load", vanish);
+
+            function vanish() {
+                loader.classList.add("disppear");
+            }
+
+        </script>
+
     </body>
 </html>
